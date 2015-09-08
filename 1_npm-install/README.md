@@ -42,5 +42,5 @@ Add the --save-dev flag to save a package as a dependency during development.
 * Examine changes to node_modules directory and package.json
 
 ## Test a node module
-`http-server .\web -p 9500`
-Open web browser on http://localhost:9500/ and verify you receive a html page with followin text: Welcome to this awesome page
+`http-server -p 9500`
+Open web browser on http://localhost:9500/ and verify you receive a html page with following text: Welcome to this awesome page

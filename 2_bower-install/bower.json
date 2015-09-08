@@ -1,0 +1,15 @@
+{
+  "name": "2_bower-install",
+  "version": "1.0.0",
+  "homepage": "https://github.com/nerdschoolbergen/js-infrastructure",
+  "description": "bower install demo",
+  "authors": [
+    "Eirik Bell"
+  ],
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "angular-latest": "~1.4.5"
+  }
+}
