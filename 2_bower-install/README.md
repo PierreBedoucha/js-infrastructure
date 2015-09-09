@@ -4,6 +4,7 @@ Bower is commonly used in JavaScript projects to manage dependencies and sharing
 
 ## Install packages from bower.json
 Run the command:
+
 `bower install`
 
 * Open bower.json and examine the dependencies json object.
@@ -13,6 +14,7 @@ Run the command:
 
 ## Add a new package
 Add the --save flag to save a package as a module dependency.
+
 `bower install angular-latest --save`
 
 * Examine changes to bower_components directory and bower.json
