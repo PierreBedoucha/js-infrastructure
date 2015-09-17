@@ -9,6 +9,7 @@
   "private": true,
   "dependencies": {
     "jquery": "~2.1.4",
-    "bootstrap": "~3.3.5"
+    "bootstrap": "~3.3.5",
+    "angular-latest": "~1.4.6"
   }
 }
