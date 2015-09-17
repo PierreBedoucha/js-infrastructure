@@ -21,7 +21,7 @@ gulp.task('dependencies', function(){
   //  .src(copyCss)
 });
 
-gulp.task('sass', funciton(){
+gulp.task('sass', function(){
 
 });
 
