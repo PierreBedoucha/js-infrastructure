@@ -1,0 +1,14 @@
+{
+  "name": "js-infrastructure",
+  "version": "1.0.0",
+  "description": "grunt tasks",
+  "author": "Eirik Bell",
+  "homepage": "https://github.com/nerdschoolbergen/js-infrastructure",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-open": "^1.0.0",
+    "gulp-sass": "^2.0.4"
+  }
+}

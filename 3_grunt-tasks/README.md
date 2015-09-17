@@ -64,13 +64,13 @@ There is also a specific task configuration, serve, which overrides the default 
 
 * Configured tasks may be invoked by grunt without needing to register a specific grunt task. Try running `grunt connect:serve` and notice the application opens in your default browser on url: http://localhost:9601
 * Run `grunt connect` and notice it will actually pick the serve configuration as a default, opening browser on url: http://localhost:9601
-* We would like to have a grunt task which will perform both the copy operation and launching the web server. Create a new grunt task called run with will first perform the copy:all task and then launching the web server with the connect:serve task. Check the documentation if you are unsure: (http://gruntjs.com/creating-tasks)
+* We would like to have a grunt task which will perform both the copy operation and launching the web server. Create a new grunt task called run which will first perform the copy:all task and then launching the web server with the connect:serve task. Check the documentation if you are unsure: (http://gruntjs.com/creating-tasks)
 
 When launching using the `grunt run` task, open console in your browser and notice its complaining about a missing file, the style.css file.
 This is because style.css does not exist in the folder, and it is actually something which should be compiled from the style.scss file.
 Scss is the file extension for SASS files, and without elaborating any further on the technology, just note that it is a file which may be compiled into style.css so that our application will be happy!
 
-* Importing one and one task in top of grunt file is one way to go, however notice the commented line, which says `require('load-grunt-tasks')(grunt);`. Uncomment the line and remove the explicit loading. Test that your grunt tasks still works
+* Importing one and one task in top of gruntfile is one way to go, however notice the commented line, which says `require('load-grunt-tasks')(grunt);`. Uncomment the line and remove the explicit loading. Test that your grunt tasks still works
 * The grunt-sass module is already installed by npm, and there is an empty sass object in the gruntConfig object in the Gruntfile. Go to the module GitHub page and find out how to configure the sass task: (https://github.com/sindresorhus/grunt-sass). Hint: Look at the examples.
 * We should include sass compilation as part of our run task. Make sure sass compilation is done before web server is launched
 
@@ -95,6 +95,6 @@ Having done this with javascript files, perhaps we should do the same with css?
 
 * Install a grunt module for css minification, the grunt-contrib-cssmin module. Make sure its stored as a development dependency.
 * Concatenate the css files.
-* Minify the css files.
+* Minify the css file.
 * Make sure the web application uses correct css file.
 * Make sure the run task does the necessary steps in correct order!
