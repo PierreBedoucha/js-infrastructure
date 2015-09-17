@@ -16,7 +16,7 @@ Should be >= 0.10
 Should be >= 1.4
 
 ## Install some global utilities
-The general syntax for installing npm packages is npm install <package>. The -g flag will install something globally.
+The general syntax for installing npm packages is npm install package-name. The -g flag will install something globally.
 
 `npm install -g http-server`
 

@@ -10,7 +10,7 @@ Run the command:
 * Open bower.json and examine the dependencies json object.
 * Open the current directory and examine the content of the bower_components folder.
 * Compare the bower.json content, directory bower_components content to the console output from bower.
-* Open the various packages in bow_components and examine their bower.json, investigate how dependencies are loaded.
+* Open the various packages in bower_components and examine their bower.json, investigate how dependencies are loaded.
 
 ## Add a new package
 Add the --save flag to save a package as a module dependency.
