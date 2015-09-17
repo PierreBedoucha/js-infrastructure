@@ -1,9 +1,7 @@
 'use strict';
 
 module.exports = function(grunt) {
-  //require('load-grunt-tasks')(grunt);
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-connect');
+  require('load-grunt-tasks')(grunt);
 
   var gruntConfig = {
     copy: {
@@ -26,6 +24,12 @@ module.exports = function(grunt) {
             cwd: 'bower_components/bootstrap/dist/js/',
             src: 'bootstrap.js',
             dest: 'app/scripts/'
+          },
+          {
+            expand: true,
+            cwd: 'bower_components/bootstrap/dist/css/',
+            src: 'bootstrap.css',
+            dest: 'app/styles/'
           }
         ]
       }
@@ -45,13 +49,52 @@ module.exports = function(grunt) {
       }
     },
     sass: {
-
+      dist: {
+        files: {
+          'app/styles/style.css': 'app/styles/style.scss'
+        }
+      }
+    },
+    concat: {
+      dist: {
+        src: ['app/scripts/jquery.js', 'app/scripts/bootstrap.js', 'app/scripts/main.js'],
+        dest: 'app/dist/awesomeapp.js'
+      },
+      jsandcss: {
+        files: {
+          'app/dist/awesomeapp.js': ['app/scripts/jquery.js', 'app/scripts/bootstrap.js', 'app/scripts/main.js'],
+          'app/dist/awesomestyle.css': ['app/styles/bootstrap.css', 'app/styles/style.css']
+        }
+      }
+    },
+    uglify: {
+      jsfiles: {
+        files: {
+          'app/dist/awesomeapp.min.js': ['app/dist/awesomeapp.js']
+        }
+      }
+    },
+    cssmin: {
+      cssfiles: {
+        files: {
+          'app/dist/awesomestyle.min.css': ['app/dist/awesomestyle.css']
+        }
+      }
     }
   };
 
   grunt.initConfig(gruntConfig);
 
   grunt.registerTask('dependencies', [
-    'copy:jquery'
+    'copy:all'
   ]);
+
+  grunt.registerTask('run', [
+    'copy:all',
+    'sass',
+    'concat:jsandcss',
+    'uglify:jsfiles',
+    'cssmin:cssfiles',
+    'connect:serve'
+  ])
 };
