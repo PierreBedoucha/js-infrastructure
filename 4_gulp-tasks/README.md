@@ -101,3 +101,6 @@ Having done this with javascript files, perhaps we should do the same with css?
 * Minify the css file.
 * Make sure the web application uses correct css file.
 * Make sure the run task does the necessary steps in correct order!
+
+Did you notice that gulp tasks runs all the tasks concurrently? We need to give the gulp tasks dependencies to sort out order and return the stream to let gulp know the task is done! Find tips here: (https://github.com/gulpjs/gulp/blob/master/docs/recipes/running-tasks-in-series.md)
+If you have multiple streams in any of your gulp tasks, check this module to merge streams: (https://github.com/grncdr/merge-stream)
