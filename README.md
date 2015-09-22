@@ -1,5 +1,8 @@
 # JsInfrastructure
 This session will cover some of the basic tools used in Javascript infrastructure, such as npm, bower and grunt/gulp.
+Start with downloading this git repository. Each of the tasks should be completed within their folder in repository. 
+The readme.md file in each of these folders contains the exercises to complete the task. 
+It is recommended to use a text editor which formats javascript, html and css, which handles the scss format and which contains a directory browser, like Sublime, Atom or WebStorm.
 
 * Task 1 will introduce the npm package manager
 * Task 2 will introduce the bower package manager
