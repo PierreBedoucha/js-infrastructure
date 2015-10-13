@@ -16,7 +16,15 @@ Should be >= 0.10
 Should be >= 1.4
 
 ## Install some global utilities
-The general syntax for installing npm packages is npm install package-name. The -g flag will install something globally.
+Npm may install packages both in local and global locations.
+Installing a package globally, means it will be available to you regardless of what directory you are currently in.
+Typically when a utility is required on command line, like bower and grunt which we will visit in later tasks, we need to install them globally to have them available at command line.
+This may require elevated privileges on windows and sudo on osx/linux.
+Local installations of npm packages are available from the directory you install from and are typically dependencies needed for developing on a specific project.
+
+The general syntax for installing npm packages is `npm install package-name`.
+The `-g` flag will install something globally.
+Execute the following steps, as we need these tools available to us on command line.
 
 `npm install -g http-server`
 
@@ -35,6 +43,11 @@ Gulp should now be offered as command line utility. Used as a task runner. Same 
 Bower should now be offered as command line utility. Used as a package manager for JavaScript libraries.
 
 ## Install packages from package.json
+Local packages can be installed using the same syntax as global packages, just without the `-g` flag.
+Local packages may also be installed using a packages.json file.
+This file contains a description of your application and which packages are required to run or develop on the application.
+Running the command `npm install` will examine the package.json file and install all the dependencies listed locally.
+
 Run the command:
 
 `npm install`
@@ -45,13 +58,18 @@ Run the command:
 * Open the various packages in node_modules and examine their packages.json, further recursive investigate how dependencies are loaded.
 
 ## Add a new package
-Add the --save-dev flag to save a package as a dependency during development.
+When adding packages as dependencies on your application, there is no need to manually edit the packages.json file.
+Instead adding a flag to the install command for a module will in addition to install it locally, also list it as a dependency in the packages.json file.
+
+Add the `--save-dev` flag to save a package as a dependency during development.
 
 `npm install gulp-uglify --save-dev`
 
 * Examine changes to node_modules directory and package.json
 
 ## Test a node module
+When a utility is installed globally for us to use on command line, we may invoke it directly like this:
+
 `http-server -p 9500`
 
 Open web browser on http://localhost:9500/ and verify you receive a html page with following text: Welcome to this awesome page
