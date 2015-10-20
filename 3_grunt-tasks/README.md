@@ -1,14 +1,16 @@
 # Grunt tasks
-Grunt is a task runner on the node platform. Grunt is configured through json object located in the gruntfile.
+
+Grunt is a task runner on the node platform. It's used to string together common developer tasks such as copying files, compiling things, running tests, starting web servers, etc. Grunt is configured through json object located in the `Gruntfile`.
+
 The gruntfile is a javascript file containing definitions of tasks and configuration for the tasks.
-Grunt may be used for many different kinds of automation tasks, some of these we will explore in the different exercises.
 
 ## Prerequesties
 To be able to complete the exercises, npm, bower and grunt must all be installed and available on your commandline.
 For instructions on how to install these tools please check the steps in task 1.
 
-## Pull down the npm and bower packages
-Run the commands:
+## 1. Pull down the npm and bower packages
+
+* Run the commands:
 
 ```
 npm install
@@ -16,20 +18,29 @@ bower install
 ```
 
 ## The gruntfile
-When grunt is invoked on the command line (or evaluated by a visual tool), it will always start with looking for the gruntfile.
-The gruntfile is a JavaScript file normally named Gruntfile.js.
-When configuring grunt, we always start with talking to Node.js which is the engine behind npm, bower, grunt, etc.
+
+When Grunt is invoked on the command line (or evaluated by a visual tool), it will always start by looking for the gruntfile.
+The Gruntfile is a JavaScript file normally named `Gruntfile.js`.
+Grunt uses NodeJS behind the scenes to wire up the neccesary infrastructure. All the tools we use today is based on NodeJS.
+
 Node provides module.exports, which is assigned a function that takes grunt as a parameter.
 Node will notice that we have installed grunt locally, and pass the grunt module into the function.
 This parameter is our entry point to provide the configuration needed to execute our tasks.
 
+* Open Gruntfile.js in the task 3 folder and try to understand it as you read below.
+
 The gruntfile consists of 3 main sections.
-We load the npm modules required to execute tasks, we define configurations for the modules and we define our own custom tasks we wish to execute.
+
+First, we load the npm modules required to execute tasks, then we define configurations for the modules and lastly we define our own custom tasks we wish to execute. In our own custom tasks we can string together any task we want so that all tasks are executed when we run the named Grunt task.
+
 The grunt object passed to our function by Node.js contains a `loadNpmTasks` method, where you may pass in the string name of the npm module you wish to load.
+
 There is also an `initConfig` method which will accept a JSON object containing the configuration of the different tasks.
-This JSON object also contains other JSON objects which are the specific configurations for each imported module, and there is a convention as to which property name corresponds to which npm module, for example will the grunt-contrib-copy npm module expect the gruntConfig object to contain a property `copy` which contains an object which is the configuration for tasks running the copy task.
+
+This JSON object also contains other JSON objects which are the specific configurations for each imported module, and there is a convention as to which property name corresponds to which npm module, for example will the grunt-contrib-copy npm module expect the gruntConfig object to contain a property `copy` which contains an object which is the configuration for tasks running the copy task. Package specific configuration options are listed in their respective repositories or npm website. For example, [this is the docs for grunt-contrib-copy](https://www.npmjs.com/package/grunt-contrib-copy)
+
 The last method on the the grunt object we need to understand is the `registerTask` method.
-The modules we have imported like grunt-contrib-copy is a task in itself, however we would like to be able to specify a task for our project with a name we define, like build, and we would like to specify multiple tasks running in sequence without having to execute them manually.
+The modules we have imported like *grunt-contrib-copy* is a task in itself, however we would like to be able to specify a task for our project with a name we define, like build, and we would like to specify multiple tasks running in sequence without having to execute them manually.
 We create an alias for a sequence of tasks.
 when calling `registerTask`, the first argument is the name we want available to us on command-line and the second argument is an array containing an ordered list of tasks to execute in sequence.
 
