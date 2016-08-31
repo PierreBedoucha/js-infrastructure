@@ -5,7 +5,7 @@ Npm is commonly used in JavaScript projects to manage dependencies, share reusab
 ## 1. Install npm
 There are several ways to install npm, the easiest is to download the Node.js installer at https://nodejs.org. Remember to make sure the "Install npm" option is checked during install. 
 
-It is also possible to use a package manager to install Node.JS and npm, please refer to [this repository for instructions](https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager?utm_source=%5Bdeliciuos%5D&utm_medium=twitter)
+It is also possible to use a package manager to install Node.JS and npm, please refer to [this repository for instructions](https://nodejs.org/en/download/package-manager/)
 
 * Verify the installation is correct by running the following in a command shell:
 
