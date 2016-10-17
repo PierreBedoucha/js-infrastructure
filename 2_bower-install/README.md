@@ -23,7 +23,7 @@ When adding dependencies to your application, there is no need to manually edit 
 
 * Add the `--save` flag to save a package as a module dependency.
 
-`bower install angular-latest --save`
+`bower install angular --save`
 
 > AngularJS is a popular Single Page Application (SPA) JavaScript framework used for creating major websites which can act more like a desktop application. It's a good framework to learn if you want to get in on web development.
 
