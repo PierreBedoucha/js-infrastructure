@@ -13,89 +13,77 @@ var copyJquery = 'bower_components/jquery/dist/jquery.js';
 var copyAllJs = ['bower_components/jquery/dist/jquery.js', 'bower_components/bootstrap/dist/js/bootstrap.js'];
 var copyCss = 'bower_components/bootstrap/dist/css/bootstrap.css';
 
+var styleFolder = 'app/styles';
+var scriptFolder = 'app/scripts';
+var distFolder = 'app/dist';
+
 var connectConfig = {
-  port: 9602,
-  root: 'app',
-  host: 'localhost'
+    port: 9602,
+    root: 'app',
+    host: 'localhost'
 };
 
 gulp.task('dependencies', function () {
-  var streams = [];
+    var streams = [];
 
-  var scriptStream =
-    gulp
-      .src(copyAllJs)
-      .pipe(gulp.dest('app/scripts'));
-  streams.push(scriptStream);
+    var scriptStream =
+        gulp
+            .src(copyAllJs)
+            .pipe(gulp.dest(scriptFolder));
+    streams.push(scriptStream);
 
-  var styleStream =
-    gulp
-      .src(copyCss)
-      .pipe(gulp.dest('app/styles'));
-  streams.push(styleStream);
+    var styleStream =
+        gulp
+            .src(copyCss)
+            .pipe(gulp.dest(styleFolder));
+    streams.push(styleStream);
 
-  return merge(streams);
+    return merge(streams);
 });
 
 gulp.task('sass', function () {
-  return gulp
-    .src('app/styles/style.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('app/styles'));
+    return gulp
+        .src(styleFolder + '/style.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest(styleFolder));
 });
 
 gulp.task('concat', ['dependencies', 'sass'], function () {
-  var streams = [];
+    var streams = [];
 
-  var scriptStream =
-    gulp
-    .src(['app/scripts/jquery.js', 'app/scripts/bootstrap.js', 'app/scripts/main.js'])
-    .pipe(concat('awesomeapp.js'))
-    .pipe(gulp.dest('app/dist/'));
-  streams.push(scriptStream);
+    var scriptStream =
+        gulp
+            .src([scriptFolder + '/jquery.js', scriptFolder + '/bootstrap.js', scriptFolder + '/main.js'])
+            .pipe(concat('awesomeapp.js'))
+            .pipe(gulp.dest(distFolder))
+            .pipe(uglify())
+            .pipe(rename({
+                extname: '.min.js'
+            }))
+            .pipe(gulp.dest(distFolder));
+    streams.push(scriptStream);
 
-  var styleStream =
-    gulp
-    .src(['app/styles/bootstrap.css', 'app/styles/style.css'])
-    .pipe(concat('awesomestyle.css'))
-    .pipe(gulp.dest('app/dist/'));
-  streams.push(styleStream);
+    var styleStream =
+        gulp
+            .src([styleFolder  +'/bootstrap.css', styleFolder + '/style.css'])
+            .pipe(concat('awesomestyle.css'))
+            .pipe(gulp.dest(distFolder))
+            .pipe(minifyCss())
+            .pipe(rename({
+                extname: '.min.css'
+            }))
+            .pipe(gulp.dest(distFolder));
+    streams.push(styleStream);
 
-  return merge(streams);
+    return merge(streams);
 });
 
-gulp.task('minify', ['concat'], function () {
-  var streams = [];
-
-  var scriptStream =
+gulp.task('connect', ['concat'], function () {
+    connect
+        .server(connectConfig);
     gulp
-    .src('app/dist/awesomeapp.js')
-    .pipe(uglify())
-    .pipe(rename({
-      extname: '.min.js'
-    }))
-    .pipe(gulp.dest('app/dist'));
-  streams.push(scriptStream);
-
-  var styleStream =
-    gulp
-    .src('app/dist/awesomestyle.css')
-    .pipe(minifyCss())
-    .pipe(rename({
-      extname: '.min.css'
-    }))
-    .pipe(gulp.dest('app/dist'));
-  streams.push(styleStream);
-
-  return merge(streams);
+        .src('')
+        .pipe(open({uri: 'http://localhost:9602'}));
 });
 
-gulp.task('connect', ['minify'], function () {
-  connect
-    .server(connectConfig);
-  gulp
-    .src('')
-    .pipe(open({uri: 'http://localhost:9602'}));
-});
-
-gulp.task('run', ['dependencies', 'sass', 'concat', 'minify', 'connect']);
+gulp.task('run', ['dependencies', 'sass', 'concat', 'connect']);
